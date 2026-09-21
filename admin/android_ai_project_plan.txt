@@ -1,0 +1,470 @@
+MERIDIAN — ANDROID AI PROJECT PLAN
+File: admin/android_ai_project_plan.txt
+Purpose: Master implementation plan for the Android AI project seeded from GPT Vector's architectural specification.
+Repository: 0SwiftKnightX/Ffhjhdxv
+Project Lead: GPT Meridian — Independent Project Architect and Continuity Strategist
+Date: 2026-09-21
+Status: PLAN CREATED — IMPLEMENTATION NOT YET STARTED
+
+=== PROJECT SEED ===
+
+This project is seeded directly from admin/vector_conversation_log.txt. The Vector document is treated as the architectural starting point, not as proof of implementation. The implementation must translate its conceptual artificial-brain architecture into a real Android software system.
+
+The target is an Android-first personal AI that can progressively support:
+- local/offline-first operation
+- a local model/reasoning layer
+- persistent memory
+- an expandable knowledge library
+- specialized cognitive processes
+- multiple cooperating AI/core roles
+- an internal communication bus
+- contextual associations
+- planning and evaluation
+- a self-model
+- resource/capability awareness
+- user authority and an explicit STOP state
+- progressively added Android/device capabilities
+
+The implementation will be incremental. Unsupported Android capabilities will not be faked or assumed.
+
+=== PHASE 0 — REPOSITORY FOUNDATION ===
+
+1. Preserve the existing Vector source copy and Meridian conversation log.
+2. Establish a clean Android project structure in this repository.
+3. Add only files required by the implementation.
+4. Keep architectural boundaries explicit so future cognitive components can be replaced or expanded without rewriting the entire system.
+5. Keep the project buildable at each meaningful milestone.
+6. Record important implementation decisions in this project plan rather than creating additional project-specific text logs.
+
+Expected foundation areas:
+- Android application entry point
+- application/service lifecycle
+- configuration
+- core data models
+- internal message/event definitions
+- persistence layer
+- tests
+- build configuration
+
+=== PHASE 1 — CORE RUNTIME / BRAINSTEM ===
+
+Implement the lowest-level runtime layer first.
+
+Responsibilities:
+- application lifecycle
+- startup/shutdown
+- controlled background execution where Android permits it
+- internal state
+- event dispatch
+- process/task supervision
+- explicit STOP handling
+- capability/resource reporting
+- logging suitable for debugging
+
+Required rule:
+A user STOP command must cancel queued actions, halt active autonomous execution, and place the assistant into a stopped/paused state. OS lifecycle recovery must never be treated as permission to override the semantic STOP state.
+
+=== PHASE 2 — INTERNAL COMMUNICATION BUS / CORPUS CALLOSUM ===
+
+Implement a typed internal message/event system connecting cognitive components.
+
+Every message should support, as appropriate:
+- source
+- destination
+- message type
+- payload/data
+- context
+- priority
+- confidence
+- timestamp
+- authority
+- correlation/task identifier
+- timeout
+- failure state
+
+Initial message classes:
+- observation
+- request
+- response
+- proposal
+- warning
+- state change
+- memory update
+- task update
+- action result
+- uncertainty
+- interruption
+
+The bus should prevent unnecessary direct coupling between cores.
+
+=== PHASE 3 — COGNITIVE CORE CONTRACTS ===
+
+Create explicit interfaces/contracts for specialized cognitive roles.
+
+Initial conceptual cores:
+1. Executive — what are we trying to accomplish?
+2. Memory — what do I already know?
+3. Perception — what is happening?
+4. Planner — what sequence could accomplish the objective?
+5. Evaluator — did it work?
+6. Social/User Model — what does the user want and what context matters?
+7. Knowledge — what does the library say?
+8. Self Model — what am I doing and what capabilities/state do I have?
+9. Safety/Authority — is this action authorized?
+10. Resource Manager — do available resources support the action?
+
+These roles are contracts, not necessarily ten permanent Android processes. The first implementation should favor maintainability and low overhead.
+
+=== PHASE 4 — SELF-MODEL AND CAPABILITY DISCOVERY ===
+
+Implement a machine-readable self-model containing:
+- identity/configuration
+- current state
+- active task
+- interrupted tasks
+- available capabilities
+- unavailable capabilities
+- restricted capabilities
+- permission requirements
+- resource state
+- current operating mode
+- authority/authorization state
+- model information
+- supported input/output channels
+
+Capability states:
+AVAILABLE
+UNAVAILABLE
+RESTRICTED
+REQUIRES_PERMISSION
+LOW_RESOURCE
+DORMANT
+
+The system should discover actual Android/device capabilities instead of assuming them.
+
+=== PHASE 5 — MEMORY SYSTEM ===
+
+Implement persistent memory as a separate system from both the language model and the user knowledge library.
+
+Minimum memory categories:
+- episodic
+- semantic
+- preference
+- procedural
+- task/state
+- relationship/context
+- system/self state
+
+Memory metadata should support, where useful:
+- source
+- timestamp
+- importance
+- confidence
+- context
+- relationships
+- last used
+- status
+- permissions
+
+Memory must be indexed and retrievable rather than treated as one undifferentiated text file.
+
+=== PHASE 6 — KNOWLEDGE LIBRARY / RETRIEVAL ===
+
+Implement the separate Library layer for user-supplied knowledge.
+
+Initial target:
+- local documents/files
+- metadata
+- indexing
+- chunking where appropriate
+- retrieval
+- contextual injection into reasoning
+- source attribution inside the assistant's internal results
+
+Adding a document should expand searchable knowledge rather than imply model retraining.
+
+The Library and Memory must remain separate at both data-model and runtime levels.
+
+=== PHASE 7 — CONTEXT / ASSOCIATION GRAPH ===
+
+Implement first-class connections between concepts, memories, knowledge items, tasks, and other entities.
+
+Connection fields should support:
+- source
+- destination
+- relationship
+- strength
+- confidence
+- context
+- priority
+- activation conditions
+- last used
+- state
+
+States:
+ACTIVE
+DORMANT
+CONDITIONAL
+WEAK
+DISABLED
+
+Context must permit the same term to resolve to different meanings in different domains.
+
+Connection changes should be explicit and auditable.
+
+=== PHASE 8 — GOALS, TASKS, PRIORITY, AND PLANNING ===
+
+Implement a task model with multiple dimensions rather than one arbitrary priority number.
+
+Dimensions:
+- urgency
+- importance
+- deadline
+- explicit user priority
+- dependency
+- estimated effort
+- resource requirement
+- consequence of delay
+- context
+- current relevance
+
+Implement:
+- task creation
+- task state
+- dependencies
+- interruption/resumption
+- candidate action generation
+- resource checks
+- authority checks
+- task completion/failure/uncertainty
+
+=== PHASE 9 — ACTION / TOOL ABSTRACTION ===
+
+Create a safe abstraction layer for actions before adding real device automation.
+
+Initial action lifecycle:
+PROPOSE
+-> AUTHORITY CHECK
+-> RESOURCE CHECK
+-> EXECUTE
+-> OBSERVE
+-> EVALUATE
+-> RECORD RESULT
+
+The action system should support explicit success, partial success, failure, uncertainty, and unwanted/harmful outcomes.
+
+Android-specific capabilities must be added through supported APIs, permissions, and platform mechanisms.
+
+=== PHASE 10 — EVALUATION / CEREBELLUM LOOP ===
+
+Implement the prediction-vs-result loop:
+
+PLAN
+-> ACTION
+-> OBSERVE
+-> COMPARE EXPECTED VS ACTUAL
+-> ADJUST
+-> RETRY OR COMPLETE
+
+Record:
+- expected outcome
+- actual outcome
+- deviation
+- confidence
+- result classification
+- learned procedural information
+
+This becomes the foundation for reliable tool use.
+
+=== PHASE 11 — RESOURCE / INTERNAL STATE MONITORING ===
+
+Implement device/resource awareness for:
+- battery
+- thermal state where available
+- CPU/load indicators where accessible
+- memory
+- storage
+- network availability
+- time
+- active workload
+- process health
+
+Resource information should affect planning rather than merely being displayed.
+
+=== PHASE 12 — USER INTERACTION SHELL ===
+
+Build the initial Android user interface around the cognitive runtime, not the other way around.
+
+Initial UI should provide:
+- conversation/input surface
+- assistant response surface
+- current state
+- active task
+- stop control
+- basic capability/permission status
+- useful error/status reporting
+
+A future floating Messenger-style assistant overlay can be added after the core system is stable.
+
+=== PHASE 13 — LOCAL MODEL INTEGRATION ===
+
+Integrate a local model/runtime behind a stable model-provider interface.
+
+The architecture must permit:
+- different model sizes
+- different model backends
+- device capability-based selection
+- offline operation when the selected model is locally available
+- model unavailable/low-resource states
+
+The cognitive architecture must not be hard-coded to one model implementation.
+
+=== PHASE 14 — PERCEPTION CHANNELS ===
+
+Add sensory channels incrementally:
+- text
+- screenshots
+- camera/images
+- OCR
+- microphone/speech where permitted
+- touchscreen/input state
+- device sensors where useful
+
+Each perception result should identify source and confidence when practical.
+
+Do not activate hardware capabilities merely because the architecture supports them. They must be explicitly implemented, permission-aware, and testable.
+
+=== PHASE 15 — ANDROID ACTION CHANNELS**
+
+Add device interaction incrementally using legitimate Android-supported mechanisms:
+- files
+- notifications where permitted
+- app navigation/interaction where permitted
+- keyboard/mouse/controller input where supported
+- Bluetooth where permitted
+- NFC where permitted
+- other device interfaces only when supported
+
+No unrestricted-control assumption is allowed.
+
+=== PHASE 16 — ARTIFICIAL COGNITIVE CYCLE**
+
+Connect the implemented components into the full loop:
+
+INPUT
+-> ROUTE
+-> PERCEIVE
+-> INTERPRET
+-> RETRIEVE MEMORY
+-> RETRIEVE KNOWLEDGE
+-> ACTIVATE CONTEXT
+-> GENERATE INTERNAL QUESTIONS
+-> COMPARE GOALS
+-> GENERATE CANDIDATE ACTIONS
+-> EVALUATE PRIORITY
+-> CHECK AUTHORITY
+-> CHECK RESOURCES
+-> EXECUTE
+-> OBSERVE RESULT
+-> EVALUATE
+-> UPDATE MEMORY
+-> UPDATE SELF MODEL
+-> UPDATE CONNECTIONS
+-> SELECT NEXT STATE
+-> REPEAT OR SLEEP/STOP
+
+The first complete loop should be small and deterministic enough to test.
+
+=== PHASE 17 — TESTING / VALIDATION ===
+
+Create tests for:
+- message routing
+- task lifecycle
+- STOP semantics
+- authority checks
+- memory persistence
+- library separation
+- retrieval
+- connection states
+- context selection
+- capability discovery
+- resource constraints
+- action lifecycle
+- evaluation loop
+- model-provider abstraction
+
+Create an end-to-end local test demonstrating:
+user request -> cognitive routing -> memory/knowledge lookup -> plan -> authority/resource checks -> action abstraction -> evaluation -> persistent state update.
+
+=== PHASE 18 — HARDENING / EXPANSION ===
+
+After the core system is functional:
+- reduce resource consumption
+- improve reliability
+- improve persistence/recovery behavior
+- expand supported Android devices
+- add additional cognitive roles only when justified
+- add multimodal perception
+- add richer tool/action integrations
+- add portable assistant state
+- add floating assistant UI
+- add optional external AI integrations
+
+These are expansion stages, not prerequisites for the first functioning Android AI.
+
+=== IMPLEMENTATION ORDER ===
+
+The initial build order is intentionally:
+
+1. Repository/project foundation
+2. Runtime/state layer
+3. Internal communication bus
+4. Core contracts
+5. Self-model/capability discovery
+6. Memory
+7. Knowledge library
+8. Association graph
+9. Goals/tasks/planning
+10. Action abstraction
+11. Evaluation loop
+12. Resource monitoring
+13. Basic UI
+14. Local model provider
+15. Perception
+16. Android action channels
+17. Full cognitive cycle
+18. Testing/hardening/expansion
+
+=== ENGINEERING RULES ===
+
+1. Build from the architecture outward; do not create a monolithic chatbot and bolt systems onto it later.
+2. Keep interfaces between cognitive components explicit.
+3. Keep Memory, Library, Model, Self Model, and Action systems separate.
+4. Prefer a small number of efficient runtime components over unnecessary Android processes.
+5. Do not claim a capability until it is implemented and tested.
+6. Respect Android permissions and lifecycle restrictions.
+7. Preserve explicit user authority.
+8. STOP means stop autonomous execution.
+9. Preserve project history; update existing files rather than overwriting useful records.
+10. Add only files necessary for the current implementation phase.
+11. Use the project plan as the single dedicated implementation-rationale text file for this new project.
+12. Update this plan as the implementation changes, rather than creating additional project-plan text files.
+13. Keep the repository buildable at meaningful milestones.
+14. Validate each layer before depending on it from the next layer.
+15. Avoid premature visual polish; cognitive/runtime correctness comes first.
+
+=== CURRENT STATUS ===
+
+Planning artifact created.
+No Android implementation has been started by this plan.
+No existing Vector source file is modified.
+The next authorized stage is repository inspection and implementation of Phase 0, followed by Phase 1.
+
+=== SOURCE ===
+
+Seed architecture:
+admin/vector_conversation_log.txt
+
+GPT Meridian
+Independent Project Architect and Continuity Strategist
+2026-09-21
