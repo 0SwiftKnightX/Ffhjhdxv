@@ -1,5 +1,6 @@
 package com.meridian.androidai.core.selfmodel
 
+import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 
@@ -18,37 +19,51 @@ class AndroidCapabilityDiscovery(
             state = CapabilityState.AVAILABLE
         )
 
+        val networkPermissionGranted =
+            packageManager.checkPermission(
+                Manifest.permission.INTERNET,
+                appContext.packageName
+            ) == PackageManager.PERMISSION_GRANTED
+
         capabilities += Capability(
             id = "android.network",
-            description = "Access network services when the application has network permission and connectivity",
-            state = if (packageManager.hasSystemFeature(PackageManager.FEATURE_WIFI)) {
+            description = "Use network services when permitted and connectivity is available",
+            state = if (networkPermissionGranted) {
                 CapabilityState.AVAILABLE
             } else {
-                CapabilityState.UNAVAILABLE
+                CapabilityState.REQUIRES_PERMISSION
             },
-            requiredPermissions = setOf("android.permission.INTERNET")
+            requiredPermissions = setOf(Manifest.permission.INTERNET)
         )
 
         capabilities += Capability(
             id = "android.camera",
             description = "Access the device camera when available and permission is granted",
-            state = if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-                CapabilityState.REQUIRES_PERMISSION
-            } else {
-                CapabilityState.UNAVAILABLE
+            state = when {
+                !packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY) ->
+                    CapabilityState.UNAVAILABLE
+                appContext.checkSelfPermission(Manifest.permission.CAMERA) ==
+                    PackageManager.PERMISSION_GRANTED ->
+                    CapabilityState.AVAILABLE
+                else ->
+                    CapabilityState.REQUIRES_PERMISSION
             },
-            requiredPermissions = setOf("android.permission.CAMERA")
+            requiredPermissions = setOf(Manifest.permission.CAMERA)
         )
 
         capabilities += Capability(
             id = "android.microphone",
             description = "Access the device microphone when available and permission is granted",
-            state = if (packageManager.hasSystemFeature(PackageManager.FEATURE_MICROPHONE)) {
-                CapabilityState.REQUIRES_PERMISSION
-            } else {
-                CapabilityState.UNAVAILABLE
+            state = when {
+                !packageManager.hasSystemFeature(PackageManager.FEATURE_MICROPHONE) ->
+                    CapabilityState.UNAVAILABLE
+                appContext.checkSelfPermission(Manifest.permission.RECORD_AUDIO) ==
+                    PackageManager.PERMISSION_GRANTED ->
+                    CapabilityState.AVAILABLE
+                else ->
+                    CapabilityState.REQUIRES_PERMISSION
             },
-            requiredPermissions = setOf("android.permission.RECORD_AUDIO")
+            requiredPermissions = setOf(Manifest.permission.RECORD_AUDIO)
         )
 
         return capabilities
